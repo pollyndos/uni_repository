@@ -9,7 +9,7 @@ def stringdiv(string):
                 listwords.append(string[i:index+1])
     if char.isalpha():
         listwords.append(string[i:index+1])
-    return listwords;
+    return listwords
 result = stringdiv(string)
 print(result)
   
