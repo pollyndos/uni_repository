@@ -32,7 +32,3 @@ def stringdiv(string):
 
 result = stringdiv(string)
 print(result)
-
-  
-
-        
