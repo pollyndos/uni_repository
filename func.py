@@ -7,7 +7,6 @@ def stringdiv(string):
     @param string: a string
     @return a list of alphabetical substrings
     """
-    index = 0
     listwords = []
     if len(string) == 0:
         listwords = []
