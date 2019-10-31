@@ -9,7 +9,7 @@ def stringdiv(string):
     """
     listwords = []
     if len(string) == 0:
-        listwords = []
+        return []
     else:
         for index, char in enumerate(string):
             # find the beginning of an alpha substring
