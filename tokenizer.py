@@ -1,4 +1,4 @@
-"""This module contains a method and a function for tokenizing a string of characters
+"""This module contains methods and a function for tokenizing a string of characters
     
 """
 
