@@ -1,4 +1,4 @@
-"""This module contains methods and a function for tokenizing a string of characters
+""" This module contains methods and a function for tokenizing a string of characters
     
 """
 
@@ -34,7 +34,8 @@ def stringdiv(string):
     return listwords
 
 class Tokenizer(object):
-    """ This class contains methodes for tokenizing a string
+    """
+    This class contains methodes for tokenizing a string
 
     """
     def tokenize(self, string):
