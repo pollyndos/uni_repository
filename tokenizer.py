@@ -33,14 +33,6 @@ def stringdiv(string):
 
     return listwords
 
-def main():
-    string = input() 
-    result = stringdiv(string)
-    print(result)
-
-if __name__ == '__main__':
-    main()
-
 class Tokenizer(object):
     """ This class contains methodes for tokenizing a string
 
@@ -82,6 +74,8 @@ def main():
     t = Tokenizer()
     string = input()
     print(t.tokenize(string))
+    result = stringdiv(string)
+    print(result)
 
 if __name__ == '__main__':
     main()
