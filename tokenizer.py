@@ -35,7 +35,7 @@ def stringdiv(string):
 
 class Tokenizer(object):
     """
-    This class contains methodes for tokenizing a string
+    This class contains methods for tokenizing a string
 
     """
     def tokenize(self, string):
