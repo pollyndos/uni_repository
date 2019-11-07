@@ -1,6 +1,6 @@
 """ This module converts an input string to a list of alphaberical substrings"""
 
-string = input()
+
 def stringdiv(string):
     """ Divides a string in a list of alphabetical substrings.
 
@@ -32,5 +32,10 @@ def stringdiv(string):
 
     return listwords
 
-result = stringdiv(string)
-print(result)
+def main():
+    string = input() 
+    result = stringdiv(string)
+    print(result)
+
+if __name__ == '__main__':
+    main()
