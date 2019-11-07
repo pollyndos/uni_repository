@@ -29,7 +29,7 @@ def stringdiv(string):
         # check the last char in the string
         # add to the list if it is alpha
         if char.isalpha():
-            listwords.append(string[i:index+1])
+            listwords.append(string[i:])
 
     return listwords
 
@@ -66,7 +66,7 @@ class Tokenizer(object):
             # check the last char in the string
             # add to the list if it is alpha
             if char.isalpha():
-                listwords.append(string[i:index+1])
+                listwords.append(string[i:])
 
             return listwords
             
