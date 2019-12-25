@@ -160,7 +160,7 @@ class Token(object):
         If the attributes of the elements are equal,
         then the attributes themselves are equal"""
 
-        # we need to check that we are dealimg with an instance of class Token
+        # we need to check that we are dealing with an instance of class Token
         if isinstance(other, Token):
             return (self.token == other.token and
                     self.category == other.category and
