@@ -129,7 +129,7 @@ class Tokenizer(object):
             # it will be a char of another category
             # and also when all chars of the same category like 012345
             token = string[i:]
-            index = index + 1
+            # index = index + 1
             t = Token(token, category, i, index) # ?? what should we take as index
             listwords2.append(t)
             
