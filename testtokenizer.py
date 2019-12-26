@@ -4,7 +4,7 @@ from tokenizer import Tokenizer
 from tokenizer import Token
 
 
-class TestTokenizerWithCategories(unittest.TestCase): # class Tokenizer, method tokenize_categories
+class TestTokenizerWithCategories(unittest.TestCase):
 
     def setUp(self):
         self.t = Tokenizer()
@@ -21,13 +21,13 @@ class TestTokenizerWithCategories(unittest.TestCase): # class Tokenizer, method 
 
     def test_no_spaces(self):
         s = self.t.tokenize_categories('яидувкиноcinema')
-        self.assertEqual(s, [Token('яидувкиноcinema', 'alpha', 0, 14)])
+        self.assertEqual(s, [Token('яидувкиноcinema', 'alpha', 0, 15)])
         self.assertEqual(len(s), 1)
 
     def test_digital_string(self):
         s = self.t.tokenize_categories('012345')
         self.assertEqual(len(s), 1)
-        self.assertEqual(s, [Token('012345', 'digit', 0, 5)])
+        self.assertEqual(s, [Token('012345', 'digit', 0, 6)])
 
     def test_first_nonalpha(self):
         s = self.t.tokenize_categories('!!!!я иду в кино cinema')
@@ -43,11 +43,11 @@ class TestTokenizerWithCategories(unittest.TestCase): # class Tokenizer, method 
     def test_last_nonalpha(self):
         s = self.t.tokenize_categories('я иду в кино cinema!!!! 000')
         self.assertEqual(len(s), 12)
-        self.assertEqual(s[11], Token('000', 'digit', 24, 26))
+        self.assertEqual(s[11], Token('000', 'digit', 24, 27))
         self.assertEqual(s[9], Token('!!!!', 'punct', 19, 23))
 
 
-class TestTokenizer(unittest.TestCase):  # class Tokenizer, method tokenize
+class TestTokenizer(unittest.TestCase):  # class Tokenizer
 
     def setUp(self):
         self.t = Tokenizer()

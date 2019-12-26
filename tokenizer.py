@@ -129,8 +129,8 @@ class Tokenizer(object):
             # it will be a char of another category
             # and also when all chars of the same category like 012345
             token = string[i:]
-            # index = index + 1
-            t = Token(token, category, i, index) # ?? what should we take as index
+            index = index + 1  # because string[i:index] will stop slicing at index-1
+            t = Token(token, category, i, index) 
             listwords2.append(t)
             
         return listwords2
@@ -157,12 +157,13 @@ class Token(object):
         return '(' + self.token + ':' + self.category + ', [' + str(self.firstindex) + ', ' + str(self.lastindex) + '])'
 
     def __eq__(self, other):
-        """Compares instances of class Token.
+        """ Compares two instances of class Token.
         If the attributes of the elements are equal,
         then the attributes themselves are equal"""
 
         # we need to check that we are dealing with an instance of class Token
         if isinstance(other, Token):
+            # now we check that all attributes of these two elements are equal
             return (self.token == other.token and
                     self.category == other.category and
                     self.firstindex == other.firstindex and
