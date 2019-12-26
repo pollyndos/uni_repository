@@ -4,7 +4,7 @@ from tokenizer import Tokenizer
 from tokenizer import Token
 
 
-class TestTokenizerWithCategories(unittest.TestCase):
+class TestTokenizerWithCategories(unittest.TestCase):  # class Tokenizer, method tokenize_categories
 
     def setUp(self):
         self.t = Tokenizer()
