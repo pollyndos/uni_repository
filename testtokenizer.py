@@ -47,7 +47,7 @@ class TestTokenizerWithCategories(unittest.TestCase):  # class Tokenizer, method
         self.assertEqual(s[9], Token('!!!!', 'punct', 19, 23))
 
 
-class TestTokenizer(unittest.TestCase):  # class Tokenizer
+class TestTokenizer(unittest.TestCase):  # class Tokenizer, method tokenize
 
     def setUp(self):
         self.t = Tokenizer()
