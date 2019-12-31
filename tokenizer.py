@@ -159,7 +159,7 @@ class Token(object):
     def __eq__(self, other):
         """ Compares two instances of class Token.
         If the attributes of the elements are equal,
-        then the attributes themselves are equal"""
+        then the elements themselves are equal"""
 
         # we need to check that we are dealing with an instance of class Token
         if isinstance(other, Token):
