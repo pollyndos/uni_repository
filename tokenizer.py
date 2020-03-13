@@ -146,10 +146,7 @@ class Tokenizer(object):
         if not isinstance(string, str):
             print('Error - input is not a string')
         if len(string) == 0:
-            return 
-       
-            
-           
+            return
         else:
             for index, char in enumerate(string):
                 # determine category of char
@@ -190,9 +187,7 @@ class Tokenizer(object):
         for token in self.tokenize_gen(string):
             if token.category == 'alpha' or token.category == 'digit':
                 yield token
-            
-            
-            
+
 
 class Token(object):
     """
@@ -239,16 +234,10 @@ def main():
     result = stringdiv(string)
     print("func:", result)
     print("tokenize_categories:", t.tokenize_categories(string))
-
     s = list(t.tokenize_gen(string))
     print("tokenize_gen:", s)
     x = list(t.tokenize_gen_alpha_digit(string))
     print("tokenize_gen_alpha_digit:", x)
-    
-            
-    
-    
-   
 
           
 if __name__ == '__main__':
