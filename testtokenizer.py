@@ -4,6 +4,91 @@ from tokenizer import Tokenizer
 from tokenizer import Token
 
 
+class TestTokenizerGenAlphaDigit(unittest.TestCase):  # class Tokenizer, method tokenize_gen_alpha_digit
+
+    def setUp(self):
+        self.t = Tokenizer()
+
+    def test_last_nonalpha(self):
+        s = list(self.t.tokenize_gen_alpha_digit('я иду в кино cinema!!!! 000'))
+        self.assertEqual(s[5], Token('000', 'digit', 24, 27))
+        self.assertEqual(s[2], Token('в', 'alpha', 6, 7))
+        self.assertEqual(len(s), 6)
+
+    def test_first_alpha(self):
+        s = list(self.t.tokenize_gen_alpha_digit('я иду в кино'))
+        self.assertEqual(s[0], Token("я", "alpha", 0, 1))
+        self.assertEqual(len(s), 4)
+
+    def test_empty_string(self):
+        s = list(self.t.tokenize_gen_alpha_digit(''))
+        self.assertEqual(len(s), 0)
+        self.assertEqual(s, [])
+
+    def test_no_spaces(self):
+        s = list(self.t.tokenize_gen_alpha_digit('яидувкиноcinema'))
+        self.assertEqual(s, [Token('яидувкиноcinema', 'alpha', 0, 15)])
+        self.assertEqual(len(s), 1)
+
+    def test_digital_string(self):
+        s = list(self.t.tokenize_gen_alpha_digit('012345'))
+        self.assertEqual(len(s), 1)
+        self.assertEqual(s, [Token('012345', 'digit', 0, 6)])
+
+    def test_first_nonalpha(self):
+        s = list(self.t.tokenize_gen_alpha_digit('!!!!я иду в кино cinema'))
+        self.assertEqual(len(s), 5)
+        self.assertEqual(s[4], Token('cinema', 'alpha', 17, 23))
+        self.assertEqual(len(s), 5)
+
+    def test_middle_nonapha(self):
+        s = list(self.t.tokenize_gen_alpha_digit('я иду в кино00000 111 00000cinema'))
+        self.assertEqual(len(s), 8)
+        self.assertEqual(s[4], Token('00000', 'digit', 12, 17))
+        self.assertEqual(s[5], Token('111', 'digit', 18, 21))
+
+class TestTokenizerGen(unittest.TestCase):  # class Tokenizer, method tokenize_gen
+
+    def setUp(self):
+        self.t = Tokenizer()
+
+    def test_last_nonalpha(self):
+        s = list(self.t.tokenize_gen('я иду в кино cinema!!!! 000'))
+        self.assertEqual(len(s), 12)
+        self.assertEqual(s[11], Token('000', 'digit', 24, 27))
+        self.assertEqual(s[9], Token('!!!!', 'punct', 19, 23))
+
+    def test_first_alpha(self):
+        s = list(self.t.tokenize_gen('я иду в кино'))
+        self.assertEqual(s[0], Token("я", "alpha", 0, 1))
+        self.assertEqual(len(s), 7)
+
+    def test_empty_string(self):
+        s = list(self.t.tokenize_gen(''))
+        self.assertEqual(len(s), 0)
+        self.assertEqual(s, [])
+
+    def test_no_spaces(self):
+        s = list(self.t.tokenize_gen('яидувкиноcinema'))
+        self.assertEqual(s, [Token('яидувкиноcinema', 'alpha', 0, 15)])
+        self.assertEqual(len(s), 1)
+
+    def test_digital_string(self):
+        s = list(self.t.tokenize_gen('012345'))
+        self.assertEqual(len(s), 1)
+        self.assertEqual(s, [Token('012345', 'digit', 0, 6)])
+
+    def test_first_nonalpha(self):
+        s = list(self.t.tokenize_gen('!!!!я иду в кино cinema'))
+        self.assertEqual(len(s), 10)
+        self.assertEqual(s[0], Token('!!!!', 'punct', 0, 4))
+
+    def test_middle_nonapha(self):
+        s = list(self.t.tokenize_gen('я иду в кино00000 111 00000cinema'))
+        self.assertEqual(len(s), 13)
+        self.assertEqual(s[7], Token('00000', 'digit', 12, 17))
+        self.assertEqual(s[9], Token('111', 'digit', 18, 21))
+        
 class TestTokenizerWithCategories(unittest.TestCase):  # class Tokenizer, method tokenize_categories
 
     def setUp(self):

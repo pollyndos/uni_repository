@@ -99,6 +99,8 @@ class Tokenizer(object):
         @return a list of instances of class Token with attributes - (substring, its category, first index, last index)
         """
         listwords2 = []
+        if not isinstance(string, str):
+            print('Error - input is not a string')
         if len(string) == 0:
             return []
         else:
@@ -134,8 +136,64 @@ class Tokenizer(object):
             listwords2.append(t)
             
         return listwords2
-
+    
+    def tokenize_gen(self, string):
         
+        """ This method generates instances of class Token
+        @param string: a string
+        @yield instances of class Token  - (substring, its category, first index, last index)
+        """
+        if not isinstance(string, str):
+            print('Error - input is not a string')
+        if len(string) == 0:
+            return 
+       
+            
+           
+        else:
+            for index, char in enumerate(string):
+                # determine category of char
+                category = self.catdef(char)
+
+                # find the beginning of an substring of one category
+                # it is either the first char in string
+                # or the char of one category, but the previous one of another
+                # we save category after loops in order not to call catdef when it is unnecessary
+                if index == 0:
+                    i = index
+                    prevcat = category
+                # making sure that we didn't reach the last char of the string
+                elif (index+1) < len(string):
+                    # find the end of substring of one and add it to list
+                    # to do so we compare categories of current and next chars
+                    # if they are different - we have reached the last char of the category and we add the substring
+                    if category != prevcat:
+                        token = string[i:index]
+                        t = Token(token, prevcat, i, index)
+                        yield(t)
+                        i = index
+                        prevcat = category  # memorising the category
+
+            # check the last char in the string if it wasn't checked before
+            # it will be a char of another category
+            # and also when all chars of the same category like 012345
+            token = string[i:]
+            index = index + 1  # because string[i:index] will stop slicing at index-1
+            t = Token(token, category, i, index) 
+            yield(t)
+
+    def tokenize_gen_alpha_digit(self, string):
+        """ This method generates instances of class Token omly with category 'digit' or 'alpha'
+        @param string: a string
+        @yield instances of class Token  - (substring, its category, first index, last index)
+        """
+        for token in self.tokenize_gen(string):
+            if token.category == 'alpha' or token.category == 'digit':
+                yield token
+            
+            
+            
+
 class Token(object):
     """
     Class for tokens with substring of the string, category of the substring
@@ -176,12 +234,22 @@ class Token(object):
 
 def main():
     t = Tokenizer()
-    string = 'i want 2 be!!!!'
-    print(t.tokenize(string))
+    string = 'i want 2 be!!!'
+    print("tokenize:", t.tokenize(string))
     result = stringdiv(string)
-    print(result)
-    print(t.tokenize_categories(string))
+    print("func:", result)
+    print("tokenize_categories:", t.tokenize_categories(string))
+
+    s = list(t.tokenize_gen(string))
+    print("tokenize_gen:", s)
+    x = list(t.tokenize_gen_alpha_digit(string))
+    print("tokenize_gen_alpha_digit:", x)
+    
+            
+    
+    
    
 
+          
 if __name__ == '__main__':
     main()
