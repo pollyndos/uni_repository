@@ -143,8 +143,7 @@ class Tokenizer(object):
         @param string: a string
         @yield instances of class Token  - (substring, its category, first index, last index)
         """
-        if not isinstance(string, str):
-            print('Error - input is not a string')
+        
         if len(string) == 0:
             return
         else:
